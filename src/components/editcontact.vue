@@ -28,7 +28,8 @@
     </div>
 </template>
 <script>
-module.exports= {
+import { mapActions } from 'vuex'
+export default {
     data:function(){
     return{
        name:'',
@@ -44,6 +45,7 @@ computed:{
   
 },
 methods:{
+    ...mapActions(['updContact']),
     submit:function(e){
         e.preventDefault()
         this.showerror1=false
@@ -83,7 +85,8 @@ methods:{
                email:this.email,
                phone:this.phone
             }
-            this.$store.dispatch('updContact',editContact)
+            this.updContact(editContact)
+           // this.$store.dispatch('updContact',editContact)
             this.name=''
             this.email=''
             this.phone=''

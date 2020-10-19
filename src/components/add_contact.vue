@@ -29,6 +29,7 @@
 </template>
 <script>
 import {v4 as uuid} from 'uuid'
+import { mapActions } from 'vuex'
 export default{
 data:function(){
     return{
@@ -44,6 +45,7 @@ data:function(){
     }
 },
 methods:{
+    ...mapActions(['addNewContact']),
     submit:function(e){
         e.preventDefault()
         this.showerror1=false
@@ -83,7 +85,8 @@ methods:{
                 email:this.email,
                 phone:this.phone
             }
-            this.$store.dispatch('addNewContact',newContact)
+            this.addNewContact(newContact)
+            //this.$store.dispatch('addNewContact',newContact)
             this.name=''
             this.email=''
             this.phone=''

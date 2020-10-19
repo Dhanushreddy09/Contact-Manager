@@ -16,7 +16,9 @@
     </div>
 </template>
 <script>
-module.exports={
+const { mapActions }=require("vuex")
+
+export default{
    props:['name','email','phone','id'],
    data:function(){
        return{
@@ -24,8 +26,10 @@ module.exports={
        }
    },
    methods:{
+       ...mapActions(['delete']),
       deleteContact:function(){
-          this.$store.dispatch('delete',this.id)
+          //this.$store.dispatch('delete',this.id)
+          this.delete(this.id)
       }
    }
 }
