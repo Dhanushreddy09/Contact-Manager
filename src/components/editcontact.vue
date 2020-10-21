@@ -42,7 +42,7 @@ export default {
     }
 },
 computed:{
-  
+   
 },
 methods:{
     ...mapActions(['updContact']),
