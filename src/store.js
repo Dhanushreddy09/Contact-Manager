@@ -36,7 +36,8 @@ const store={
             phone:'9536872110',
             email:'jockey@gmail.com'
         }
-        ]
+        ],
+        theme:false
     },
     getters:{},
     mutations:{
@@ -49,6 +50,9 @@ const store={
         },
         updTheContact(state,newcontact){
             state.contacts=state.contacts.map(contact=>contact.id==newcontact.id?(contact=newcontact):contact)
+        },
+        changetheme(state,theme){
+            state.theme=!state.theme;
         }
     },
     actions:{
@@ -60,6 +64,9 @@ const store={
         },
         updContact(context,arguement){
            context.commit('updTheContact',arguement)
+        },
+        themechange(context,theme){
+           context.commit("changetheme",theme)
         }
     }
 }

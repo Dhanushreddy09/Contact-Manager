@@ -1,22 +1,22 @@
 <template>
     <div>
-        <div class="card card-body">
+        <div v-bind:class="{'card card-body':!theme,'card card-body bg-secondary':theme}">
             <div class="h">
     <h4>{{name}} <i @click="show=!show" class="fas fa-caret-down"></i></h4>
-        <i @click="deleteContact" class="fas fa-trash-alt text-danger symbol1" title="Delete Contact"></i>
-        <router-link :to="{name:'edit',params:{id:`${id}`}}"><i class="fas fa-pencil-alt text-primary symbol2" title="Edit Contact"></i></router-link>
+        <i @click="deleteContact" v-bind:class="{'fas fa-trash-alt text-danger symbol1':!theme,'fas fa-trash-alt text-dark symbol1':theme}" title="Delete Contact"></i>
+        <router-link :to="{name:'edit',params:{id:`${id}`}}"><i v-bind:class="{'fas fa-pencil-alt text-primary symbol2':!theme,'fas fa-pencil-alt text-dark symbol2':theme}" title="Edit Contact"></i></router-link>
             </div>
             <div class="sep"></div>
     <ul class="list-group" v-if="show">
-    <li class="list-group-item"><i class="fas fa-envelope"></i><b> Email :</b> {{email}}</li>
-    <li class="list-group-item "><i class="fas fa-phone"></i><b> Phone :</b> {{phone}}</li>
+    <li v-bind:class="{'list-group-item':!theme,'list-group-item bg-secondary':theme}"><i class="fas fa-envelope"></i><b> Email :</b> {{email}}</li>
+    <li v-bind:class="{'list-group-item':!theme,'list-group-item bg-secondary':theme}"><i class="fas fa-phone"></i><b> Phone :</b> {{phone}}</li>
   </ul>
     </div>
     <br>
     </div>
 </template>
 <script>
-const { mapActions }=require("vuex")
+const { mapActions, mapState }=require("vuex")
 
 export default{
    props:['name','email','phone','id'],
@@ -24,6 +24,9 @@ export default{
        return{
            show:false
        }
+   },
+   computed:{
+      ...mapState(['theme'])
    },
    methods:{
        ...mapActions(['delete']),

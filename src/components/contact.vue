@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="header">
-   <h1><span class="text-danger">Contact</span> List</h1>
+   <h1><span class="text-danger">Contact</span><span v-bind:class="{'':!theme,'text-secondary':theme}"> List</span></h1>
    </div>
    <br>
     <li v-for="element in contacts" :key='element.id'>
@@ -16,13 +16,18 @@ import {mapState} from 'vuex'
 export default {
     components:{contacts},
     data:function(){
-        return{}
+        return{
+            checked:false
+        }
     },
     computed:{
        /* contacts:function(){
             return this.$store.state.contacts
         }*/
-        ...mapState(['contacts'])
+        ...mapState(['contacts','theme'])
+    },
+    methods:{
+        
     }
 }
 </script>

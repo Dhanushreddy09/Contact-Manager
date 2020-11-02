@@ -1,12 +1,15 @@
 <template>
-     <div>
+     <div v-bind:class="{'':!theme,'text-secondary':theme}">
             <h1 class="display-4"><span class="text-danger">404</span> Page not found</h1>
             <p class="Lead">Sorry,this page doesn't exist</p>
         </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
-    
+    computed:{
+        ...mapState(['theme'])
+    }
 }
 </script>
 <style scoped>

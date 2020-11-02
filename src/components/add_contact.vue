@@ -1,5 +1,5 @@
 <template>
-    <div class="card ">
+    <div v-bind:class="{'card':!theme,'card bg-dark text-white':theme}">
         <div class="card-header">
             Add Contact
         </div>
@@ -22,14 +22,14 @@
                    <input type="text"   v-bind:class="{'form-control form-control-lg':!showerror3,'form-control form-control-lg is-invalid':showerror3}" placeholder="Enter Phone" v-model="phone" >
                </div>
                <div class="text-danger" v-if="showerror3">{{error}}<div class="sep"></div></div>
-               <input   type="submit" class="btn btn-block btn-dark">
+               <input   type="submit" v-bind:class="{'btn btn-block btn-dark':!theme,'btn btn-block btn-secondary':theme}">
            </form>
         </div>
     </div>
 </template>
 <script>
 import {v4 as uuid} from 'uuid'
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 export default{
 data:function(){
     return{
@@ -43,6 +43,9 @@ data:function(){
         showerror2:false,
         showerror3:false
     }
+},
+computed:{
+     ...mapState(['theme']),
 },
 methods:{
     ...mapActions(['addNewContact']),
