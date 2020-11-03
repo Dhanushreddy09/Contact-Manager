@@ -42,7 +42,7 @@ export default {
     }
 },
 computed:{
-  ...mapState(['theme'])
+  ...mapState(['theme','contacts'])
 },
 methods:{
     ...mapActions(['updContact']),

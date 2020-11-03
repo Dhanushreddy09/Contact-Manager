@@ -128,7 +128,11 @@ input:checked + .slider:before {
 }
 @media(max-width:767px){
     li{
-        padding:3.6px;
+        padding:1px;
+        line-height:50px;
+    }
+    switch{
+        line-height: 50px;
     }
 }
 </style>
