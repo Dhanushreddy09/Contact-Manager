@@ -1,6 +1,6 @@
 <template>
     <div v-bind:class="{'bg-danger':!dark_theme,'bg-dark':dark_theme}">
-        <nav class="navbar navbar-default navbar-expand-sm navbar-dark py-0 mb-3">
+        <nav class="navbar navbar-fluid navbar-expand-sm navbar-dark py-0 mb-3">
     <a class="navbar-brand" href="/">{{branding}}</a>
   
     <div class="navbar-collapse w-100  order-3 ">
@@ -8,7 +8,7 @@
         <li class="nav-item active mt-1">
               <div class="custom-control custom-switch">
   <input type="checkbox" class="custom-control-input" @change="changetheme" id="customSwitch1">
-  <label class="custom-control-label" for="customSwitch1"></label>
+   <i v-bind:class="{'fa fa-sun text-white mr-5':!dark_theme,'fa fa-sun text-secondary mr-5':dark_theme}" aria-hidden="true"></i><label class="custom-control-label" for="customSwitch1"></label><i v-bind:class="{'fa fa-moon text-white':!dark_theme,'fa fa-moon text-secondary':dark_theme}" aria-hidden="true"></i>
 </div>
           </li>
         <li class="nav-item active ">
