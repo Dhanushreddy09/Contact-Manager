@@ -1,6 +1,6 @@
 <template>
     <div v-bind:class="{'bg-danger':!dark_theme,'bg-dark':dark_theme}">
-        <nav class="navbar navbar-fluid navbar-expand-sm navbar-dark py-0 mb-3">
+        <nav class="navbar sticky-top navbar-expand-sm navbar-dark  py-0 mb-3">
     <a class="navbar-brand" href="/">{{branding}}</a>
   
     <div class="navbar-collapse w-100  order-3 ">
