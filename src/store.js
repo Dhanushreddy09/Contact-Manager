@@ -1,42 +1,13 @@
 import vue from 'vue'
 import vuex from 'vuex'
+import axios from 'axios'
 
 vue.use(vuex)
 
 
 const store={
     state:{
-        contacts:[{
-            id:1,
-            name:'Dhanush',
-            phone:'9550783110',
-            email:'pothulapati5434@gmail.com'
-        },
-        {
-            id:2,
-            name:'Tharaka',
-            phone:'8179972551',
-            email:'pothulapatitharaka@gmail.com'
-        },
-        {
-            id:3,
-            name:'John',
-            phone:'9552541100',
-            email:'johncrimson4@gmail.com'
-        },
-        {
-            id:4,
-            name:'Bob Marley robson',
-            phone:'9545872110',
-            email:'bob@gmail.com'
-        },
-        {
-            id:5,
-            name:'Jackson',
-            phone:'9536872110',
-            email:'jockey@gmail.com'
-        }
-        ],
+        contacts:[],
         theme:false
     },
     getters:{},
@@ -45,7 +16,7 @@ const store={
          state.contacts= state.contacts.filter(contact=>contact.id!==id)
         },
         addNew(state,contact){
-            state.contacts=[contact,...state.contacts]
+            state.contacts=[...state.contacts,contact]
            
         },
         updTheContact(state,newcontact){
@@ -53,21 +24,48 @@ const store={
         },
         changetheme(state,theme){
             state.theme=!state.theme;
+        },
+        setposts(state,posts){
+            state.contacts=posts
         }
     },
     actions:{
-        delete(context,id){
-            context.commit('deleteContact',id)
+        delete({commit},id){
+            //context.commit('deleteContact',id)
+            axios.post('http://localhost/Contact_Manager/src/fetchcontacts.php',{action:'deletecontact',id:id})
+            .then(
+                commit("deleteContact",id)
+            ).catch(err=>console.log(err))
         },
-        addNewContact(context,contact){
-            context.commit('addNew',contact)
+        addNewContact({commit},contact){
+            //context.commit('addNew',contact)
+            axios.post("http://localhost/Contact_Manager/src/fetchcontacts.php",{action:'addcontact',contact})
+            .then(
+                //commit('addNew',contact),
+                location.replace("/")
+                //commit('setposts')
+            ).catch(err=>console.log(err))
         },
         updContact(context,arguement){
-           context.commit('updTheContact',arguement)
+           //context.commit('updTheContact',arguement)
+           axios.post("http://localhost/Contact_Manager/src/fetchcontacts.php",{action:'update',arguement}).then(
+               location.replace("/")
+           )
         },
         themechange(context,theme){
            context.commit("changetheme",theme)
-        }
+        },
+        getcontacts({commit}){
+            axios.post("http://localhost/Contact_Manager/src/fetchcontacts.php",{action:'getcontacts'})
+              .then(
+              res=>{
+
+                  let posts=res.data
+              commit("setposts",posts)
+                }
+
+          ).catch(err=>console.log(err))
+      }
     }
 }
 export default new vuex.Store(store);
