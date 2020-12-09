@@ -2,7 +2,7 @@
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: *');
 header('Access-Control-Allow-Headers: *');
-$db=mysqli_connect("localhost","root","","contacts");
+$db=mysqli_connect("localhost","volhard","Dhanush@123","contacts");
 if(!$db){
 	die("failed to connect to database".mysqli_connect_error());
 }
