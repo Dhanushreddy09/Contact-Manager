@@ -2,7 +2,7 @@
     <div v-bind:class="{'':!theme,'text-secondary':theme}">
             <h1 class="display-4">About Contact Manager</h1>
             <p class="lead">Simple app to manage Contacts</p>
-            <h1 class="display-4 mb-2"> Version:2.0.0</h1>
+            <h1 class="display-4 mb-2"> Version:2.1.1</h1>
         </div>
 </template>
 <script>
