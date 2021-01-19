@@ -28,12 +28,10 @@
     </div>
 </template>
 <script>
-import {v4 as uuid} from 'uuid'
 import { mapActions, mapState } from 'vuex'
 export default{
 data:function(){
     return{
-        id:uuid(),
         name:'',
         email:'',
         change:false,
@@ -45,7 +43,7 @@ data:function(){
     }
 },
 computed:{
-     ...mapState(['theme']),
+     ...mapState(['theme','contacts']),
 },
 methods:{
     ...mapActions(['addNewContact']),
@@ -83,11 +81,11 @@ methods:{
         }
         else{
             const newContact={
-                id:this.id,
                 name:this.name,
                 email:this.email,
                 phone:this.phone
             }
+            
             this.addNewContact(newContact)
             //this.$store.dispatch('addNewContact',newContact)
             this.name=''

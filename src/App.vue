@@ -16,6 +16,11 @@ import contact from './components/contact'
 import { mapState } from 'vuex'
 export default {
   components:{navbar,add_contact,contacts,contact},
+  mounted(){
+    
+      this.$store.dispatch("getcontacts")
+    
+  },
   data:function(){
     return{
       
